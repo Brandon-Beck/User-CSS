@@ -1,0 +1,20 @@
+/* ==UserStyle==
+@name           example.com - 3/31/2019, 1:23:11 AM
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A new userstyle
+@author         Christopher McGinnis
+@preprocessor stylus
+@var select theme "Theme" ["dark:Dark theme", "light:Light theme"]
+==/UserStyle== */
+
+
+@-moz-document domain("example.com") {
+  body {
+    if theme == dark {
+      background-color: black;
+    } else if theme == light {
+      background-color: white;
+    }
+  }
+}
