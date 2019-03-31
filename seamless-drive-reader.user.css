@@ -1,0 +1,69 @@
+/* ==UserStyle==
+@name           Seamless Drive Reader
+@namespace      https://github.com/Christopher-McGinnis/User-CSS
+@version        1.0.0
+@description    Removes gaps between pages of the Google Drive Viewer. Intended for PDF viewing of longstrip documents.
+@author         Christopher McGinnis
+@preprocessor   stylus
+@var checkbox   autohide_toolbars "Autohide Toolbars?" 1
+@var select   use_custom_bg "Use Custom BG?" [
+    "none:None",
+    "do_custom_color:Custom Color",
+    "do_custom_img:Custom Image"
+]
+@var color      custom-bg-color          "Custom BG Color"  #000
+@var text       custom-bg-img  "Custom BG Image (Must put in quotes)" "none" 
+==/UserStyle== */
+
+@-moz-document regexp("https://drive.google.com(/.*)?") {
+    /**************************************************************************
+     * Remove horrifying gap between pages that beheads our beloved heroine and
+     * chops speech and thought bubbles in half
+     **************************************************************************/
+    div[aria-label="Showing viewer."] div[role="document"] > div {
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    /**************************************************************************
+     * Remove ugly shadow line at top of every pdf page
+     * usually unnoticeable bc it shades the ugly gap we just removed.
+     **************************************************************************/
+    div[aria-label="Showing viewer."] div[role="document"] > div > img {
+        box-shadow: none !important;
+    }
+    /**************************************************************************
+     * Hide the stupid action toolbar that takes up screen-space
+     * Normally, it auto-hides.... only when your mouse is on the pdf page.
+     * ie. you either have to cover the image with ugly toolbar or mouse....
+     * you suck google.
+     * Our css hides it unless your hovering over it with the mouse.
+     * ********************************************************************** *
+     * Same thing for the page/zoom panel at the bottom of the screen
+     **************************************************************************/
+     if autohide_toolbars {
+         div[aria-label="Showing viewer."] div[role="toolbar"]:not(:hover)
+        ,div[aria-label="Showing viewer."] > div[style="bottom: 0px;"] > div[style^="opacity"]:not(:hover) {
+            opacity: 0 !important;
+        }
+        /**************************************************************************
+         * Give the new functionality defined above smooth fade in/out effects,
+         * similar to what it already had prior to us overriding it.
+         **************************************************************************/
+        div[aria-label="Showing viewer."] div[role="toolbar"]
+        ,div[aria-label="Showing viewer."] > div[style="bottom: 0px;"] > div[style^="opacity"] {
+            transition: opacity .5s ease-in-out;
+        }
+    }
+    /**************************************************************************
+     * Customize the background. May be less distracting than the default transparent bg.
+     **************************************************************************/
+    div[aria-label="Showing viewer."] {
+        if use_custom_bg == do_custom_img {
+            background-color: custom-bg-color;
+            background-image: url(custom-bg-img)
+        }
+        if use_custom_bg == do_custom_color {
+            background-color: custom-bg-color;
+        }
+    }
+}
