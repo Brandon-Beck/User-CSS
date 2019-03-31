@@ -13,8 +13,10 @@
   body {
     if theme == dark {
       background-color: black;
+      color: black;
     } else if theme == light {
       background-color: white;
+      color: white;
     }
   }
 }
