@@ -1,12 +1,13 @@
 /* ==UserStyle==
-@name           Latte Theme
+@name           Latte Flavors
 @description    Custom Latte Flavors!
 @namespace      https://github.com/Christopher-McGinnis/User-CSS
 @version        1.0.0
 @author         Christopher McGinnis
 @preprocessor   stylus
-@var checkbox   autohide_toolbars "Autohide Toolbars?" 1
+@var checkbox   autohide_toolbars "Hide WP Bar?" 1
 @var checkbox   hide_homepage_chapters "Hide Chapters on Homepage?" 1
+@var checkbox   remove_page_gaps "Hide Page Gaps?" 1
 @var select   use_custom_theme "Theme?" [
     "no_custom_theme:Normal",
     "do_custom_theme_color:Custom Colors",
@@ -28,6 +29,9 @@
     if autohide_toolbars
         #wpadminbar
             display: none
+    if remove_page_gaps
+        .entry-content
+            line-height: 0
     if less_distracting_chapters == do_less_distracting
         .entry-content
             background-color: secondary-bg-color
