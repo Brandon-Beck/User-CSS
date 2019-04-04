@@ -1,0 +1,73 @@
+/* ==UserStyle==
+@name           Latte Theme
+@description    Custom Latte Flavors!
+@namespace      https://github.com/Christopher-McGinnis/User-CSS
+@version        1.0.0
+@author         Christopher McGinnis
+@preprocessor   stylus
+@var checkbox   autohide_toolbars "Autohide Toolbars?" 1
+@var checkbox   hide_homepage_chapters "Hide Chapters on Homepage?" 1
+@var select   use_custom_theme "Theme?" [
+    "no_custom_theme:Normal",
+    "do_custom_theme_color:Custom Colors",
+    "do_custom_theme_img:Custom Image"
+]
+@var select   less_distracting_chapters "Reader Mode?" [
+    "no_less_distracting:Normal",
+    "do_less_distracting:Single Color",
+]
+@var color      primary-bg-color         "Primary BG Color"  #222
+@var color      primary-fg-color         "Primary FG Color"  #eee
+@var color      secondary-bg-color       "Seconday BG Color"  #131313
+@var color      secondary-fg-color       "Secondary FG Color"  #aaa
+@var color      accent-bg-color          "Accent BG Color"  #ffcc0012
+@var color      accent-fg-color          "Accent FG Color"  #ffedbb
+==/UserStyle== */
+
+@-moz-document domain("lattetranslations.home.blog")
+    if autohide_toolbars
+        #wpadminbar
+            display: none
+    if less_distracting_chapters == do_less_distracting
+        .entry-content
+            background-color: secondary-bg-color
+    if use_custom_theme == do_custom_theme_color
+        .main-navigation
+        ,.menu-menu-container
+        ,.menu
+        ,article
+        ,.header-image-contain
+            background-color: primary-bg-color !important
+            color: primary-fg-color
+        .site-title > a
+            color: primary-fg-color !important
+        body 
+        ,input[type="password"]
+            background-color: secondary-bg-color !important
+            color: secondary-fg-color !important
+        .posted-on
+        ,time
+        ,label
+        ,.post-format-label > *
+        ,input[type="submit"]
+        ,.author-heading
+        ,.author-link
+            color: secondary-fg-color !important
+        .author-info
+            background-color: accent-bg-color !important
+            color: accent-fg-color !important
+        .site-description
+        ,.site-info
+        ,a
+        ,.author-description
+        ,.author-title > a
+        ,.author-bio
+        ,.post-password-form
+            color: accent-fg-color !important
+        input[type="submit"]
+            border-color: accent-bg-color !important
+@-moz-document regexp("https://lattetranslations\\.home\\.blog(/((#|\\?|page/).*)?)?")
+    if hide_homepage_chapters
+        .entry-content
+            display: none
+    
