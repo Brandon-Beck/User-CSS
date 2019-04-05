@@ -1,17 +1,22 @@
 /* ==UserStyle==
 @name           Latte Flavors
-@description    Custom Latte Flavors!
+@description    Custom Latte Flavors! A Customizable theme for Latte. Has options to hide page gap, chapters on homepage, and WP admin bar.
 @namespace      https://github.com/Christopher-McGinnis/User-CSS
-@version        1.0.0
+@version        1.0.1
 @author         Christopher McGinnis
 @preprocessor   stylus
 @var checkbox   autohide_toolbars "Hide WP Bar?" 1
 @var checkbox   hide_homepage_chapters "Hide Chapters on Homepage?" 1
 @var checkbox   remove_page_gaps "Hide Page Gaps?" 1
-@var select   use_custom_theme "Theme?" [
-    "no_custom_theme:Normal",
-    "do_custom_theme_color:Custom Colors",
-    "do_custom_theme_img:Custom Image"
+@var select   use_theme "Theme?" [
+    "no_theme:Normal",
+    "do_theme_dark:Dark",
+    "do_theme_caremel_popcorn:Caremel Popcorn",
+    "do_theme_latte:Latte",
+    "do_theme_raeliana:Raeliana",
+    "do_theme_elise:Elise Dark",
+    "do_theme_color:Custom Colors",
+    "do_theme_img:Custom Image"
 ]
 @var select   less_distracting_chapters "Reader Mode?" [
     "no_less_distracting:Normal",
@@ -21,26 +26,63 @@
 @var color      primary-fg-color         "Primary FG Color"  #eee
 @var color      secondary-bg-color       "Seconday BG Color"  #131313
 @var color      secondary-fg-color       "Secondary FG Color"  #aaa
-@var color      accent-bg-color          "Accent BG Color"  #ffcc0012
+@var color      accent-bg-color          "Accent BG Color"  #322c20
 @var color      accent-fg-color          "Accent FG Color"  #ffedbb
+@var text      custom-bg-img          "BG Image URL (must be in quotes)"  "none"
 ==/UserStyle== */
-
 @-moz-document domain("lattetranslations.home.blog")
+    if use_theme == do_theme_dark
+        primary-bg-color = #222
+        primary-fg-color = #eee
+        secondary-bg-color = #131313
+        secondary-fg-color = #aaa
+        accent-bg-color = #322c20
+        accent-fg-color = #ffedbb
+    if use_theme == do_theme_caremel_popcorn
+        primary-bg-color = #bb4500 
+        primary-fg-color = #871000
+        secondary-bg-color = #fdee9b
+        secondary-fg-color = #e45e00
+        accent-bg-color = #9d4000
+        accent-fg-color = #ee8213
+    if use_theme == do_theme_latte
+        primary-bg-color = #33275d
+        primary-fg-color = #ecb353
+        secondary-bg-color = #ca35df
+        secondary-fg-color = #f9e96a
+        accent-bg-color = #554136
+        accent-fg-color = #961e2d
+        //accent-fg-color = #ffffff
+    if use_theme == do_theme_raeliana
+        primary-bg-color = #2e2d2f
+        primary-fg-color = #d5a05e
+        secondary-bg-color = #2a365f
+        secondary-fg-color = #aaa
+        accent-bg-color = #5b3c34
+        accent-fg-color = #f96d50
+    if use_theme == do_theme_elise
+        primary-bg-color = #0f0f0f
+        primary-fg-color = #cacaca
+        secondary-bg-color = #444
+        secondary-fg-color = #aaa
+        accent-bg-color = #0d003c
+        accent-fg-color = #ffb4e0
+    if use_theme == do_theme_img
+        body
+            background-image: url(custom-bg-img)
+            background-attachment: fixed
+            background-position: center
+            background-size: cover
     if autohide_toolbars
         #wpadminbar
             display: none
-    if remove_page_gaps
-        .entry-content
-            line-height: 0
-    if less_distracting_chapters == do_less_distracting
-        .entry-content
-            background-color: secondary-bg-color
-    if use_custom_theme == do_custom_theme_color
+    if use_theme != no_theme
         .main-navigation
         ,.menu-menu-container
         ,.menu
         ,article
         ,.header-image-contain
+        ,.comments-area
             background-color: primary-bg-color !important
             color: primary-fg-color
         .site-title > a
@@ -70,8 +112,17 @@
             color: accent-fg-color !important
         input[type="submit"]
             border-color: accent-bg-color !important
+
+@-moz-document regexp("https://lattetranslations\\.home\\.blog(/(page(/.*)?|\\d{4}/\\d{2}/\\d{2}/.*)?((#|\\?).*)?)?")
+    if remove_page_gaps
+        .entry-content
+            line-height: 0
+    if less_distracting_chapters == do_less_distracting
+        .entry-content
+            background-color: secondary-bg-color
+        article
+            box-shadow: none !important
 @-moz-document regexp("https://lattetranslations\\.home\\.blog(/((#|\\?|page/).*)?)?")
     if hide_homepage_chapters
         .entry-content
             display: none
-    
