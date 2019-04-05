@@ -13,6 +13,6 @@ A Customizable theme for Latte. Has options to hide page gap, chapters on homepa
 A Customizable theme for Raeliana. Has options to hide page gap, chapters on homepage, and WP admin bar.
 ![Customizable Raeliana Theme Preview](https://raw.githubusercontent.com/Christopher-McGinnis/User-CSS/master/images/preview/RaelianaDuke.jpg)
 
-## [Hidden Elise![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-238b8b.svg)](https://raw.githubusercontent.com/Christopher-McGinnis/User-CSS/master/raeliana-duke.user.css)
+## [Hidden Elise![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with-Stylus-238b8b.svg)](https://raw.githubusercontent.com/Christopher-McGinnis/User-CSS/master/hidden-elise.user.css)
 Has options to hide page gaps and WP admin bar. Adds cusomizable color themes.
 ![Customizable Hidden Elise Theme Preview](https://raw.githubusercontent.com/Christopher-McGinnis/User-CSS/master/images/preview/HiddenElise.jpg)
